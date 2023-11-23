@@ -55,7 +55,7 @@
         <a href="https://jetztundhier.app/datenschutz" target="_blank">Datenschutz</a> | <a href="https://jetztundhier.app/impressum" target="_blank">Impressum</a>
     </footer>
     <div id="shareButton">
-        <p>Share this Calendar</p>
+        <p>Mit Freunden teilen 🫶</p>
     </div>
 </div>
 <script>
@@ -64,7 +64,7 @@
         document.getElementById('shareButton').addEventListener('click', function() {
             if (navigator.share) {
                 navigator.share({
-                    title: 'Mit Freunden teilen 🫶', // Title of the content to share
+                    title: '🎄 Achtsamkeit Adventskalender 2023',
                     url: window.location.href // Current URL
                 }).then(() => {
                     console.log('Thanks for sharing!');
