@@ -948,7 +948,7 @@ button {
 
 #shareButton {
   position: fixed; /* Fixed position */
-  bottom: 10px; /* Positioned at the bottom */
+  bottom: 0; /* Positioned at the bottom */
   left: 50%; /* Center the element */
   transform: translateX(-50%); /* Ensure it's perfectly centered */
   padding: 10px 20px;
