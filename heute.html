@@ -41,10 +41,11 @@
     <div class="email-subscription">
         <h2 class="section-headline">Verlosung</h2>
         <p class="raffle-description">Hier könnte Ihre Beschreibung der Verlosung stehen, einschließlich Details darüber, was verlost wird und wie man teilnimmt.</p>
-        <input type="email" placeholder="hello@emailaddress.com">
-        <button class="participation-button">Mitmachen!</button>
+        <input type="email" id="email-input" placeholder="hello@emailaddress.com">
+        <input type="hidden" id="raffle-day" value="8" name="day">
+        <button class="participation-button" onclick="submitRaffleEntry()">Mitmachen!</button>
         <p class="success-message" style="display: none;">Vielen Dank für Ihre Teilnahme! Wir haben Ihre Einreichung erhalten.</p>
-    </div>    
+    </div>
     <footer>
         <a href="https://jetztundhier.app/datenschutz" target="_blank">Datenschutz</a> | <a href="https://jetztundhier.app/impressum" target="_blank">Impressum</a>
     </footer>
@@ -97,6 +98,28 @@
                 window.location.href = 'index.html';
             });
     });
+
+    function submitRaffleEntry() {
+        var email = document.getElementById('email-input').value;
+        var raffle = document.getElementById('raffle-day').value;
+
+        fetch('/.netlify/functions/submit-entry', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email: email, raffle: raffle })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Show success message, hide form, or redirect as needed
+            document.querySelector('.success-message').style.display = 'block';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Fehler beim Senden der Daten. Bitte versuchen Sie es später noch einmal.');
+        });
+    }
 
   </script>  
 
