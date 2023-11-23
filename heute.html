@@ -105,6 +105,12 @@
         var email = document.getElementById('email-input').value;
         var raffle = document.getElementById('raffle-day').value;
 
+        // Check if email field is empty
+        if (email.trim() === '') {
+            alert('Bitte geben Sie eine E-Mail-Adresse ein.');
+            return; // Exit the function if the email is empty
+        }
+
         fetch('/.netlify/functions/submit-entry', {
             method: 'POST',
             headers: {
@@ -124,6 +130,7 @@
             alert('Fehler beim Senden der Daten. Bitte versuchen Sie es später noch einmal.');
         });
     }
+
 
   </script>  
 
