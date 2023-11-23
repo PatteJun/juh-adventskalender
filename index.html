@@ -159,48 +159,54 @@
             </span>
             <span class="grid__item-shadow"></span>
         </button>
-    </div>    
+    </div>  
+    <!-- Overlay -->
+    <div class="overlay" id="overlay">
+        <p class="overlay-text">Bitte warten...</p>
+    </div>  
     <script>
-        // Function to handle the door click
-        function handleDoorClick(event) {
-          // Prevent the default form submission behavior
-          event.preventDefault();
-      
-          // Get the door number from the data attribute of the button
-          var doorNumber = event.currentTarget.getAttribute('data-door-number');
-      
-          // Call the cloud function with the door number
-          fetch(`https://advent.jetztundhier.app/.netlify/functions/check-door?door=${doorNumber}`)
-            .then(response => {
-              if (!response.ok) {
-                // If the response is not okay, throw an error to jump to the catch block
-                throw new Error('Network response was not ok.');
-              }
-              return response.json();
-            })
-            .then(data => {
-              if (data.error) {
-                // If there is an error message in the data, show it in an alert
-                alert(data.error);
-              } else {
-                // If it's the correct door, redirect to heute.html with the Airtable ID as a parameter
-                window.location.href = `heute.html?id=${data.id}`;
-              }
-            })
-            .catch(error => {
-              // If there is a fetch error, log it to the console and show a user-friendly message
-              console.error('There has been a problem with your fetch operation:', error);
-              alert('Es gab ein Problem mit der Anfrage. Bitte versuchen Sie es später noch einmal.');
-            });
-        }
-      
-        // Add click event listener to all door buttons
         document.addEventListener('DOMContentLoaded', function() {
-            // Add click event listener to all door buttons
             document.querySelectorAll('.grid__item').forEach(door => {
                 door.addEventListener('click', handleDoorClick);
             });
         });
+
+        function handleDoorClick(event) {
+            event.preventDefault();
+
+            var doorNumber = event.currentTarget.getAttribute('data-door-number');
+            showOverlay(); // Show the overlay
+
+            fetch(`https://advent.jetztundhier.app/.netlify/functions/check-door?door=${doorNumber}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok.');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    hideOverlay(); // Hide the overlay
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        window.location.href = `heute.html?id=${data.id}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('There has been a problem with your fetch operation:', error);
+                    hideOverlay(); // Hide the overlay
+                    alert('Es gab ein Problem mit der Anfrage. Bitte versuchen Sie es später noch einmal.');
+                });
+        }
+
+        function showOverlay() {
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        function hideOverlay() {
+            document.getElementById('overlay').style.display = 'none';
+        }
+
       </script>      
 </body>
 </html>

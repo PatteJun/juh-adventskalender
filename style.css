@@ -59,6 +59,24 @@ body {
   color: #333;
 }
 
+.overlay {
+  display: none; /* Hidden by default */
+  position: fixed; /* Position it relative to the viewport */
+  top: 0; left: 0; right: 0; bottom: 0; /* Cover the whole screen */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 1000; /* Ensure it's above other elements */
+}
+
+.overlay-text {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for exact centering */
+  color: white; /* Text color */
+  font-size: 1.5rem; /* Text size */
+  font-family: 'Inter', sans-serif; /* Font family */
+}
+
 button {
     cursor: pointer;
     margin: 0;
