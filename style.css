@@ -59,6 +59,26 @@ body {
   color: #333;
 }
 
+footer {
+  text-align: center; /* Center-align the content */
+  padding: 20px 0; /* Add some padding for spacing */
+  color: #333; /* Dark text color for contrast */
+  font-size: 1rem; /* Slightly smaller font size */
+  font-family: 'Inter', sans-serif; /* Font family */
+  bottom: 0;
+  width: 100%;
+}
+
+footer a {
+  color: #333; /* Choose a color that matches your site's theme */
+  text-decoration: none; /* Remove the underline */
+  margin: 0 10px; /* Add horizontal spacing between links */
+}
+
+footer a:hover {
+  text-decoration: underline; /* Underline on hover for a traditional link feel */
+}
+
 .overlay {
   display: none; /* Hidden by default */
   position: fixed; /* Position it relative to the viewport */
