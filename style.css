@@ -749,3 +749,105 @@ button {
     }
   }
 }
+
+/* DAY */
+.heute {
+  font-family: 'Arial', sans-serif; /* You can adjust the font family as needed */
+  margin: 0;
+  padding: 0;
+  background-color: #fff; /* Adjust background color as needed */
+}
+
+.container {
+  max-width: 600px; /* Adjust max-width for different devices if needed */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-arrow {
+  text-decoration: none;
+  color: #000; /* Adjust the color as needed */
+}
+
+.header-logo {
+  width: 100px;
+  height: 100px;
+}
+
+.day-indicator {
+  position: relative;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.calendar-icon {
+  width: 100px; /* Adjust as needed */
+  height: auto;
+}
+
+.day-number {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  font-size: 1.5rem; /* Adjust as needed */
+}
+
+.main-title {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.content-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.content-text {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.email-subscription {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.email-subscription input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.participation-button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  background-color: #009688; /* Adjust the button color as needed */
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* Adjust the media queries as needed for different breakpoints */
+@media (max-width: 768px) {
+  .container {
+      padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .day-indicator {
+      margin: 10px 0;
+  }
+}
