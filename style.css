@@ -957,4 +957,6 @@ button {
   box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); /* Shadow for floating effect */
   cursor: pointer; /* Cursor indicates it's clickable */
   z-index: 1000; /* Ensure it's above other content */
+  width: 240px;
+  text-align: center;
 }
