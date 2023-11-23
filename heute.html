@@ -40,6 +40,39 @@
         <p class="success-message" style="display: none;">Vielen Dank für Ihre Teilnahme! Wir haben Ihre Einreichung erhalten.</p>
     </div>    
 </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Extract the URL search parameters
+      var queryParams = new URLSearchParams(window.location.search);
+      var id = queryParams.get('id');
+  
+      // If the 'id' parameter is not present, redirect to the homepage
+      if (!id) {
+        window.location.href = 'index.html';
+        return;
+      }
+  
+      // Call the 'get-content' cloud function
+      fetch(`https://advent.jetztundhier.app/.netlify/functions/get-content?id=${id}`)
+        .then(response => {
+          if (!response.ok) {
+            // If the response is not ok, redirect to the homepage
+            window.location.href = 'index.html';
+            return;
+          }
+          return response.json();
+        })
+        .then(data => {
+          // For now, just log the content to the console
+          console.log(data);
+        })
+        .catch(error => {
+          // If there's an error in fetching, redirect to the homepage
+          console.error('Error fetching content:', error);
+          window.location.href = 'index.html';
+        });
+    });
+  </script>  
 
 </body>
 </html>
