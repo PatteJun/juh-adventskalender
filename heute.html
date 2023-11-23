@@ -54,9 +54,28 @@
     <footer>
         <a href="https://jetztundhier.app/datenschutz" target="_blank">Datenschutz</a> | <a href="https://jetztundhier.app/impressum" target="_blank">Impressum</a>
     </footer>
+    <div id="shareButton">
+        <p>Share this Calendar</p>
+    </div>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+        document.getElementById('shareButton').addEventListener('click', function() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Mindfulness Advent Calendar', // Title of the content to share
+                    url: window.location.href // Current URL
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                })
+                .catch(console.error);
+            } else {
+                // Fallback for browsers that don't support the native share API
+                alert('Your browser does not support the native share feature.');
+            }
+        });
+
         var queryParams = new URLSearchParams(window.location.search);
         var id = queryParams.get('id');
 

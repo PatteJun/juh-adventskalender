@@ -945,3 +945,16 @@ button {
       margin: 10px 0;
   }
 }
+
+#shareButton {
+  position: fixed; /* Fixed position */
+  bottom: 10px; /* Positioned at the bottom */
+  left: 50%; /* Center the element */
+  transform: translateX(-50%); /* Ensure it's perfectly centered */
+  padding: 10px 20px;
+  background-color: #fff; /* Adjust color as needed */
+  border-radius: 20px 20px 0 0; /* Rounded top corners */
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.2); /* Shadow for floating effect */
+  cursor: pointer; /* Cursor indicates it's clickable */
+  z-index: 1000; /* Ensure it's above other content */
+}
