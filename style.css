@@ -773,6 +773,7 @@ button {
   max-width: 600px; /* Adjust max-width for different devices if needed */
   margin: 0 auto;
   padding: 20px;
+  display: none;
 }
 
 .navigation {

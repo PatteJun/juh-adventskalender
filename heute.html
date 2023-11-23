@@ -69,6 +69,7 @@
         function maybeHideAnimation() {
             if (minimumAnimationTimePassed && contentFetched) {
                 document.querySelector('.lottie-animation').style.display = 'none';
+                document.querySelector('.container').style.display = 'block'; // Show the content
             }
         }
 
