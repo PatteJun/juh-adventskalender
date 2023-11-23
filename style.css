@@ -840,10 +840,12 @@ button {
 
 .email-subscription input {
   width: 100%;
-  padding: 10px;
+  padding: 18px 12px;
   margin: 0 0 10px;
   box-sizing: border-box;
   border: 1px solid #ccc;
+  font-size: 1.2rem;
+  border-radius: 8px;
 }
 
 .participation-button {
