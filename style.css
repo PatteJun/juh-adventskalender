@@ -1062,3 +1062,8 @@ button {
   width: 240px;
   text-align: center;
 }
+
+#shareButton p {
+  line-height: 140%;
+  margin: 0;
+}
