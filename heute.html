@@ -59,6 +59,15 @@
     </div>
 </div>
 <script>
+
+    function convertMarkdownLinksToHTML(text) {
+        const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+        
+        return text.replace(markdownLinkRegex, (match, text, url) => {
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
 
         document.getElementById('shareButton').addEventListener('click', function() {
@@ -120,9 +129,12 @@
                 const doorNumber = data.fields['Door Number'];
                 const title = data.fields['Title'];
                 const description = data.fields['Description'];
-                const formattedDescription = description.replace(/\n/g, '<br>');
+                const convertedDescription = convertMarkdownLinksToHTML(description);
+                const formattedDescription = convertedDescription.replace(/\n/g, '<br>');
+
                 const raffleDescription = data.fields['Contest Description'];
-                const formattedRaffleDescription = raffleDescription.replace(/\n/g, '<br>');
+                const convertedRaffleDescription = convertMarkdownLinksToHTML(raffleDescription);
+                const formattedRaffleDescription = convertedRaffleDescription.replace(/\n/g, '<br>');
 
                 document.getElementById('day-number').textContent = doorNumber;
                 document.getElementById('main-title').textContent = title;
