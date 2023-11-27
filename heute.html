@@ -38,9 +38,7 @@
     <h1 class="main-title" id="main-title">Inspiration für dich und deinen Tag</h1>
     
     <img src="img/juh-lebkuchen.svg" class="content-image" id="content-image" style="display: none;">
-    <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/LIxv1t6Nfsg" frameborder="0" allowfullscreen></iframe>
-    </div>    
+    <div id="youtube-video"></div>
     
     <p class="content-text" id="content-text"></p>
     
@@ -69,6 +67,28 @@
         return text.replace(markdownLinkRegex, (match, text, url) => {
             return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
         });
+    }
+
+    function getYoutubeVideoId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        const match = url.match(regExp);
+
+        if (match && match[2].length === 11) {
+            return match[2];
+        } else {
+            return null;
+        }
+    }
+
+    function embedYoutubeVideo(videoUrl) {
+        const videoId = getYoutubeVideoId(videoUrl);
+
+        if (videoId) {
+            const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+            const iframeHtml = `<div class="video-container"><iframe src="${embedUrl}" frameborder="0" allowfullscreen></iframe></div>`;
+
+            document.getElementById('youtube-video').innerHTML = iframeHtml;
+        }
     }
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -153,6 +173,9 @@
                     image = data.fields['Image'][0].url;
                 }
 
+                if (data.fields['Embedded YouTube Video']) {
+                    embedYoutubeVideo(data.fields['Embedded YouTube Video']);
+                }
 
                 document.getElementById('day-number').textContent = doorNumber;
                 document.getElementById('main-title').textContent = title;
