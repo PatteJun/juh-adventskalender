@@ -137,9 +137,12 @@
                 const formattedRaffleDescription = convertedRaffleDescription.replace(/\n/g, '<br>');
 
                 const hasContest = data.fields['Has Contest'];
-                if (data.fields['Image'].length > 0) {
-                    const image = data.fields['Image'][0].url;
+                
+                let image = '' ;
+                if (data.fields['Image'] && data.fields['Image'].length > 0 && data.fields['Image'][0].url) {
+                    image = data.fields['Image'][0].url;
                 }
+
 
                 document.getElementById('day-number').textContent = doorNumber;
                 document.getElementById('main-title').textContent = title;
@@ -151,7 +154,7 @@
                     document.getElementById('email-subscription').style.display = 'block';
                 }
 
-                if (image) {
+                if (image !== '') {
                     document.getElementById('content-image').src = image;
                     document.getElementById('content-image').style.display = 'block';
                 }
