@@ -41,7 +41,7 @@
     
     <p class="content-text" id="content-text"></p>
     
-    <div class="email-subscription">
+    <div class="email-subscription" id="email-subscription" style="display: none;">
         <div id="email-subscription-form">
             <h2 class="section-headline">Jetzt teilnehmen</h2>
             <p class="raffle-description" id="raffle-description">Hier könnte Ihre Beschreibung der Verlosung stehen, einschließlich Details darüber, was verlost wird und wie man teilnimmt.</p>
@@ -136,11 +136,18 @@
                 const convertedRaffleDescription = convertMarkdownLinksToHTML(raffleDescription);
                 const formattedRaffleDescription = convertedRaffleDescription.replace(/\n/g, '<br>');
 
+                const hasContest = data.fields['Has Contest'];
+
                 document.getElementById('day-number').textContent = doorNumber;
                 document.getElementById('main-title').textContent = title;
                 document.getElementById('content-text').innerHTML = formattedDescription;
                 document.getElementById('raffle-day').value = doorNumber;
                 document.getElementById('raffle-description').innerHTML = formattedRaffleDescription;
+
+                if (hasContest) {
+                    document.getElementById('email-subscription').style.display = 'block';
+                }
+
             })
             .catch(error => {
                 console.error('Error fetching content:', error);
