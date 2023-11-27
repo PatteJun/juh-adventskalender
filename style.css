@@ -842,7 +842,7 @@ button {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #333;
+  color: #4A4B68;
 }
 
 .nav-arrow svg {
@@ -873,14 +873,14 @@ button {
   transform: translate(-50%, -50%);
   z-index: 10;
   font-size: 1.4rem;
-  color: #333;
+  color: #545572;
 }
 
 .main-title {
   font-family: 'Inter', sans-serif;
   text-align: center;
   margin: 20px 0;
-  color: #333;
+  color: #545572;
   font-size: 2rem;
 }
 
@@ -897,7 +897,8 @@ button {
   text-align: center;
   margin: 20px 0;
   color: #333;
-  line-height: 150%;
+  line-height: 140%;
+  font-size: 14px;
 }
 
 .email-subscription {
