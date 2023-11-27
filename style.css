@@ -71,7 +71,7 @@ body {
 
 footer {
   text-align: center; /* Center-align the content */
-  padding: 20px 0; /* Add some padding for spacing */
+  padding: 20px 0 80px; /* Add some padding for spacing */
   color: #545572; /* Dark text color for contrast */
   font-size: 1rem; /* Slightly smaller font size */
   font-family: 'Inter', sans-serif; /* Font family */
