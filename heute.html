@@ -126,15 +126,22 @@
                 contentFetched = true;
                 maybeHideAnimation();
 
+                let formattedDescription = '';
+                if (data.fields['Description']) {
+                    const description = data.fields['Description'];
+                    const convertedDescription = convertMarkdownLinksToHTML(description);
+                    formattedDescription = convertedDescription.replace(/\n/g, '<br>');
+                }
+
                 const doorNumber = data.fields['Door Number'];
                 const title = data.fields['Title'];
-                const description = data.fields['Description'];
-                const convertedDescription = convertMarkdownLinksToHTML(description);
-                const formattedDescription = convertedDescription.replace(/\n/g, '<br>');
 
-                const raffleDescription = data.fields['Contest Description'];
-                const convertedRaffleDescription = convertMarkdownLinksToHTML(raffleDescription);
-                const formattedRaffleDescription = convertedRaffleDescription.replace(/\n/g, '<br>');
+                let formattedRaffleDescription = '';
+                if (data.fields['Contest Description']) {
+                    const raffleDescription = data.fields['Contest Description'];
+                    const convertedRaffleDescription = convertMarkdownLinksToHTML(raffleDescription);
+                    formattedRaffleDescription = convertedRaffleDescription.replace(/\n/g, '<br>');
+                }
 
                 const hasContest = data.fields['Has Contest'];
                 
