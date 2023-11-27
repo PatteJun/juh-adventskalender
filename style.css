@@ -896,14 +896,16 @@ button {
 .content-text {
   text-align: center;
   margin: 20px 0;
-  color: #333;
+  color: #545572;
   line-height: 140%;
-  font-size: 14px;
+  font-size: 18px;
+  font-family: 'Inter', sans-serif;
 }
 
 .email-subscription {
   text-align: center;
   margin: 20px 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .email-subscription input {
@@ -914,6 +916,7 @@ button {
   border: 1px solid #ccc;
   font-size: 1.2rem;
   border-radius: 8px;
+  font-family: 'Inter', sans-serif;
 }
 
 .participation-button {
@@ -925,20 +928,23 @@ button {
   font-size: 1rem;
   cursor: pointer;
   border-radius: 24px;
+  font-family: 'Inter', sans-serif;
 }
 
 .section-headline {
   text-align: center;
   font-size: 1.5rem;
-  color: #333;
+  color: #545572;
   margin: 20px 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .raffle-description {
   text-align: center;
   line-height: 150%;
-  color: #333;
+  color: #545572;
   margin: 0 0 20px;
+  font-family: 'Inter', sans-serif;
 }
 
 .success-message {
