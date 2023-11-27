@@ -137,7 +137,9 @@
                 const formattedRaffleDescription = convertedRaffleDescription.replace(/\n/g, '<br>');
 
                 const hasContest = data.fields['Has Contest'];
-                const image = data.fields['Image'][0].url;
+                if (data.fields['Image'].length > 0) {
+                    const image = data.fields['Image'][0].url;
+                }
 
                 document.getElementById('day-number').textContent = doorNumber;
                 document.getElementById('main-title').textContent = title;
