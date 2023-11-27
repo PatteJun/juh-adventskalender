@@ -120,10 +120,11 @@
                 const doorNumber = data.fields['Door Number'];
                 const title = data.fields['Title'];
                 const description = data.fields['Description'];
+                const formattedDescription = description.replace(/\n/g, '<br>');
 
                 document.getElementById('day-number').textContent = doorNumber;
                 document.getElementById('main-title').textContent = title;
-                document.getElementById('content-text').textContent = description;
+                document.getElementById('content-text').innerHTML = formattedDescription;
                 document.getElementById('raffle-day').value = doorNumber;
             })
             .catch(error => {
