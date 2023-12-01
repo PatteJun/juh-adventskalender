@@ -62,13 +62,28 @@
 </div>
 <script>
 
-    function convertMarkdownLinksToHTML(text) {
+    function convertMarkdownToHTML(text) {
+        // Convert Markdown links to HTML
         const markdownLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
-        
-        return text.replace(markdownLinkRegex, (match, text, url) => {
+        text = text.replace(markdownLinkRegex, (match, text, url) => {
             return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
         });
+
+        // Convert **bold** text to <strong>
+        const boldRegex = /\*\*([^*]+)\*\*/g;
+        text = text.replace(boldRegex, (match, content) => {
+            return `<strong>${content}</strong>`;
+        });
+
+        // Convert _italic_ text to <em>
+        const italicRegex = /_([^_]+)_/g;
+        text = text.replace(italicRegex, (match, content) => {
+            return `<em>${content}</em>`;
+        });
+
+        return text;
     }
+
 
     function getYoutubeVideoId(url) {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
