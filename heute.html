@@ -168,7 +168,7 @@
                 let formattedDescription = '';
                 if (data.fields['Description']) {
                     const description = data.fields['Description'];
-                    const convertedDescription = convertMarkdownLinksToHTML(description);
+                    const convertedDescription = convertMarkdownToHTML(description);
                     formattedDescription = convertedDescription.replace(/\n/g, '<br>');
                 }
 
