@@ -178,7 +178,7 @@
                 let formattedRaffleDescription = '';
                 if (data.fields['Contest Description']) {
                     const raffleDescription = data.fields['Contest Description'];
-                    const convertedRaffleDescription = convertMarkdownLinksToHTML(raffleDescription);
+                    const convertedRaffleDescription = convertMarkdownToHTML(raffleDescription);
                     formattedRaffleDescription = convertedRaffleDescription.replace(/\n/g, '<br>');
                 }
 
