@@ -155,7 +155,7 @@
         fetch(`/.netlify/functions/get-content?id=${id}`)
             .then(response => {
                 if (!response.ok) {
-                    window.location.href = 'index.html';
+                    //window.location.href = 'index.html';
                     return;
                 }
                 return response.json();
