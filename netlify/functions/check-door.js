@@ -3,7 +3,7 @@ const { DateTime } = require('luxon');
 
 exports.handler = async function(event, context) {
   // Your Airtable base and table setup
-  const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('apppi8vcU0MF25dgl');
+  const base = new Airtable({ apiKey: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN }).base('apppi8vcU0MF25dgl');
   const table = base('Doors');
 
   // Get the door number from the request
