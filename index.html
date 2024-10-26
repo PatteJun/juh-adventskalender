@@ -187,18 +187,13 @@
                 door.addEventListener('click', handleDoorClick);
             });
 
-            // Get the modal
             var modal = document.getElementById("customModal");
-
-            // Get the <span> element that closes the modal
             var span = document.getElementsByClassName("close-button")[0];
 
-            // When the user clicks on <span> (x), close the modal
             span.onclick = function() {
                 modal.style.display = "none";
             }
 
-            // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
@@ -210,34 +205,37 @@
             event.preventDefault();
 
             var doorNumber = event.currentTarget.getAttribute('data-door-number');
-            showOverlay(); // Show the overlay
+            showOverlay();
 
             fetch(`https://advent.jetztundhier.app/.netlify/functions/check-door?door=${doorNumber}`)
                 .then(response => {
+                    console.log('Response status:', response.status);
                     if (!response.ok) {
-                        throw new Error('Network response was not ok.');
+                        return response.json().then(data => {
+                            throw new Error(data.error || 'Network response was not ok.');
+                        });
                     }
                     return response.json();
                 })
                 .then(data => {
-                    hideOverlay(); // Hide the overlay
+                    hideOverlay();
                     if (data.error) {
-                        showModal(data.error); // Use the dynamic error message
+                        showModal(data.error);
                     } else {
                         window.location.href = `heute.html?id=${data.id}`;
                     }
                 })
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
-                    hideOverlay(); // Hide the overlay
-                    showModal('Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.');
+                    hideOverlay();
+                    showModal(error.message || 'Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.');
                 });
         }
 
         function showModal(message) {
             var modal = document.getElementById("customModal");
             var modalText = document.getElementById("modal-text");
-            modalText.textContent = message; // Set the modal text to the dynamic message
+            modalText.textContent = message;
             modal.style.display = "block";
         }
 
