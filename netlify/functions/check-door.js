@@ -20,7 +20,7 @@ exports.handler = async function(event, context) {
   // Check if it's before December 1st
   if (currentMonth < 12 || (currentMonth === 12 && currentDay < 1)) {
     console.log('Before December 1st, fetching before_start message.');
-    return await getRandomMessage('before_start');
+    return await getRandomMessage(messagesTable, 'before_start');
   }
 
   // Check if the door number is the current day
@@ -55,11 +55,11 @@ exports.handler = async function(event, context) {
     }
   } else {
     console.log('Door number does not match today, fetching wrong_day message.');
-    return await getRandomMessage('wrong_day');
+    return await getRandomMessage(messagesTable, 'wrong_day');
   }
 };
 
-async function getRandomMessage(type) {
+async function getRandomMessage(messagesTable, type) {
   try {
     const records = await messagesTable.select({
       filterByFormula: `{Type} = "${type}"`
