@@ -124,6 +124,11 @@
                 // Fallback for browsers that don't support the native share API
                 alert('Your browser does not support the native share feature.');
             }
+
+            // Track the click event with Plausible
+            if (typeof plausible === 'function') {
+                plausible('ShareButtonClick');
+            }
         });
 
         var queryParams = new URLSearchParams(window.location.search);
