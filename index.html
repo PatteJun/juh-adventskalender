@@ -222,7 +222,7 @@
                 .then(data => {
                     hideOverlay(); // Hide the overlay
                     if (data.error) {
-                        showModal(data.error);
+                        showModal(data.error); // Use the dynamic error message
                     } else {
                         window.location.href = `heute.html?id=${data.id}`;
                     }
@@ -230,14 +230,14 @@
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                     hideOverlay(); // Hide the overlay
-                    showModal('Leider nicht das Türchen des Tages. Versuch es nochmal! :)');
+                    showModal('Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es später noch einmal.');
                 });
         }
 
         function showModal(message) {
             var modal = document.getElementById("customModal");
             var modalText = document.getElementById("modal-text");
-            modalText.textContent = message;
+            modalText.textContent = message; // Set the modal text to the dynamic message
             modal.style.display = "block";
         }
 
