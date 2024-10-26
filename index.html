@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>🎄 Achtsamkeits-Adventskalender 2023</title>
-    <meta property="og:title" content="🎄 Achtsamkeits-Adventskalender 2023" />
+    <title>🎄 Achtsamkeits-Adventskalender 2024</title>
+    <meta property="og:title" content="🎄 Achtsamkeits-Adventskalender 2024" />
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/png" href="https://advent.jetztundhier.app/favicon.png">
     <meta property="og:image" content="https://advent.jetztundhier.app/img/sharing-image.png" />
@@ -17,7 +17,7 @@
     <div class="hero">
         <img class="hero__logo" src="img/juh-christmas-logo.svg">
         <div class="hero__content">
-            <h1 class="hero__title">Achtsamkeits-Adventskalender</h1>
+            <h1 class="hero__title">Achtsamkeits-Adventskalender 2024</h1>
             <p class="hero__intro">Willkommen beim Adventskalender von <a href="https://www.jetztundhier.app" target="_blank"><strong>JETZT</strong> UND <strong>HIER</strong></a> - der Achtsamkeits-App für ein bewusstes Leben voller Fülle. Hier wartet jeden Tag ein Türchen auf dich. Findest Du das Türchen des heutigen Tages?</p>
         </div>
         <img class="hero__lebkuchen" src="img/juh-lebkuchen.svg">
@@ -175,11 +175,35 @@
     <div class="overlay" id="overlay">
         <p class="overlay-text">Bitte warten...</p>
     </div>  
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="modal-text">Leider nicht das Türchen des Tages. Versuch es nochmal! :)</p>
+        </div>
+    </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.grid__item').forEach(door => {
                 door.addEventListener('click', handleDoorClick);
             });
+
+            // Get the modal
+            var modal = document.getElementById("customModal");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close-button")[0];
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
         });
 
         function handleDoorClick(event) {
@@ -198,7 +222,7 @@
                 .then(data => {
                     hideOverlay(); // Hide the overlay
                     if (data.error) {
-                        alert(data.error);
+                        showModal(data.error);
                     } else {
                         window.location.href = `heute.html?id=${data.id}`;
                     }
@@ -206,8 +230,15 @@
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                     hideOverlay(); // Hide the overlay
-                    alert('Leider nicht das Türchen des Tages. Versuch es nochmal! :)');
+                    showModal('Leider nicht das Türchen des Tages. Versuch es nochmal! :)');
                 });
+        }
+
+        function showModal(message) {
+            var modal = document.getElementById("customModal");
+            var modalText = document.getElementById("modal-text");
+            modalText.textContent = message;
+            modal.style.display = "block";
         }
 
         function showOverlay() {
@@ -217,7 +248,6 @@
         function hideOverlay() {
             document.getElementById('overlay').style.display = 'none';
         }
-
-      </script>      
+    </script>      
 </body>
 </html>
