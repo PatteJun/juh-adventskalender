@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
   }
 
   const { email, raffle } = JSON.parse(event.body);
-  const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base('apppi8vcU0MF25dgl');
+  const base = new Airtable({ apiKey: process.env.AIRTABLE_PERSONAL_ACCESS_TOKEN }).base('apppi8vcU0MF25dgl');
   const table = base('Participants');
 
   try {
